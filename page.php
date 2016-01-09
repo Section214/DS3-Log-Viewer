@@ -40,14 +40,6 @@ switch( $log ) {
 		break;
 }
 
-// Open the file
-//$fh = fopen( $file, 'r' ) or die( 'Invalid or missing log file!' );
-
-// Get file contents
-//$data = fread( $fh, filesize( $file ) ) or die( 'Unable to read log file!' );
-
-// Close the file
-//fclose( $fh );
 $data = file_get_contents( $file );
 ?>
 	<div class="container">
