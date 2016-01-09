@@ -53,10 +53,6 @@ $data = file_get_contents( $file );
 			</div>
 
 			<textarea class="spacer" id="log-viewer" readonly="readonly"><?php echo $data; ?></textarea>
-
-			<div class="log-controls spacer">
-				<label for="refresh-timer">Auto-refresh timer: <input type="number" id="refresh-timer" value="<?php echo ( isset( $_GET['refresh'] ) && is_numeric( $_GET['refresh'] ) ? abs( $_GET['refresh'] ) : 0 ); ?>" /> seconds (0 to disable)</label>
-			</div>
 		</div>
 	</div>
 <?php
