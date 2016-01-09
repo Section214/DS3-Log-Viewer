@@ -1,0 +1,16 @@
+#log-viewer {
+	width: 100%;
+	min-height: 400px;
+}
+.spacer {
+	margin-top: 15px;
+}
+.log-controls {
+	padding: 15px;
+	background: #e5e5e5;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+}
+#refresh-timer {
+	width: 50px;
+}
