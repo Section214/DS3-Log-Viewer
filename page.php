@@ -20,7 +20,13 @@ if( ! $ds_runtime->is_localhost ) {
 require_once( 'header.php' );
 
 $log  = ( ! isset( $_GET['log'] ) ? 'apache-access' : $_GET['log'] );
-$file = '../../logs/';
+
+// Windows is silly...
+if( PHP_OS !== 'Darwin' ) {
+	$file = '../../apache/logs/';
+} else {
+	$file = '../../logs/';
+}
 
 switch( $log ) {
 	case 'apache-access' :
@@ -38,6 +44,11 @@ switch( $log ) {
 	default :
 		$file .= 'access_log';
 		break;
+}
+
+// Windows is silly...
+if( PHP_OS !== 'Darwin' ) {
+	$file = str_replace( '_log', '.log', $file );
 }
 
 $data = file_get_contents( $file );
