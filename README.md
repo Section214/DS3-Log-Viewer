@@ -2,6 +2,8 @@
 
 Provides quick developer viewing of server logs
 
+![http://cloud.section214.com/1S3B2p432L2h/Image%202016-01-08%20at%208.37.42%20PM.png](http://cloud.section214.com/1S3B2p432L2h/Image%202016-01-08%20at%208.37.42%20PM.png)
+
 ### Installation
 
 * You must be running DesktopServer 3.8+
