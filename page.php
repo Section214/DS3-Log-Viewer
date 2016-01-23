@@ -104,61 +104,59 @@ if( $filesystem->has( $errorlog ) ) {
 		<div class="row">
 			<h1>Server Logs</h1>
 
-			<div class="col-md-3">
-				<div class="log-controls">
-					<form>
-						<strong>Select Log File</strong>
-						<div class="radio">
-							<label><input type="radio" name="log" value="apache-access" <?php echo ( $_GET['log'] == 'apache-access' || ! isset( $_GET['log'] ) ? 'checked' : '' ); ?>>Apache Access Log</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="log" value="apache-error" <?php echo ( $_GET['log'] == 'apache-error' ? 'checked' : '' ); ?>>Apache Error Log</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="log" value="php-error" <?php echo ( $_GET['log'] == 'php-error' ? 'checked' : '' ); ?>>PHP Error Log</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="log" value="mysql-error" <?php echo ( $_GET['log'] == 'mysql-error' ? 'checked' : '' ); ?>>MySQL Error Log</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="log" value="ssl-request" <?php echo ( $_GET['log'] == 'ssl-request' ? 'checked' : '' ); ?>>SSL Request Log</label>
-						</div>
+			<div class="col-md-3 log-controls">
+				<form>
+					<strong>Select Log File</strong>
+					<div class="radio">
+						<label><input type="radio" name="log" value="apache-access" <?php echo ( $_GET['log'] == 'apache-access' || ! isset( $_GET['log'] ) ? 'checked' : '' ); ?>>Apache Access Log</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="log" value="apache-error" <?php echo ( $_GET['log'] == 'apache-error' ? 'checked' : '' ); ?>>Apache Error Log</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="log" value="php-error" <?php echo ( $_GET['log'] == 'php-error' ? 'checked' : '' ); ?>>PHP Error Log</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="log" value="mysql-error" <?php echo ( $_GET['log'] == 'mysql-error' ? 'checked' : '' ); ?>>MySQL Error Log</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="log" value="ssl-request" <?php echo ( $_GET['log'] == 'ssl-request' ? 'checked' : '' ); ?>>SSL Request Log</label>
+					</div>
 
-						<hr />
+					<hr />
 
-						<strong>Keybindings</strong>
+					<strong>Keybindings</strong>
 
-						<p class="clearfix">
-							<div class="pull-left"><kbd><?php echo $ctrlkey; ?>+F</kbd></div>
-							<div class="pull-right">Search log</div>
-						</p>
-						<p class="clearfix">
-							<div class="pull-left"><kbd><?php echo $ctrlkey; ?>+G</kbd></div>
-							<div class="pull-right">Find next</div>
-						</p>
-						<p class="clearfix">
-							<div class="pull-left"><kbd>Shift+<?php echo $ctrlkey; ?>+G</kbd></div>
-							<div class="pull-right">Find previous</div>
-						</p>
-						<p class="clearfix">
-							<div class="pull-left"><kbd>Alt+F</kbd></div>
-							<div class="pull-right">Persistent Search</div>
-						</p>
-						<p class="clearfix">
-							<div class="pull-left"><kbd>Alt+G</kbd></div>
-							<div class="pull-right">Go To Line</div>
-						</p>
+					<p class="clearfix">
+						<div class="pull-left"><kbd><?php echo $ctrlkey; ?>+F</kbd></div>
+						<div class="pull-right">Search log</div>
+					</p>
+					<p class="clearfix">
+						<div class="pull-left"><kbd><?php echo $ctrlkey; ?>+G</kbd></div>
+						<div class="pull-right">Find next</div>
+					</p>
+					<p class="clearfix">
+						<div class="pull-left"><kbd>Shift+<?php echo $ctrlkey; ?>+G</kbd></div>
+						<div class="pull-right">Find previous</div>
+					</p>
+					<p class="clearfix">
+						<div class="pull-left"><kbd>Alt+F</kbd></div>
+						<div class="pull-right">Persistent Search</div>
+					</p>
+					<p class="clearfix">
+						<div class="pull-left"><kbd>Alt+G</kbd></div>
+						<div class="pull-right">Go To Line</div>
+					</p>
 
-						<div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-						<hr />
+					<hr />
 
-						<a name="reload" class="btn btn-success pull-left">Reload</a>
-						<a name="clear" class="btn btn-danger pull-right">Clear</a>
+					<a name="reload" class="btn btn-success pull-left">Reload</a>
+					<a name="clear" class="btn btn-danger pull-right">Clear</a>
 
-						<div class="clearfix"></div>
-					</form>
-				</div>
+					<div class="clearfix"></div>
+				</form>
 			</div>
 
 			<div class="col-md-9">
