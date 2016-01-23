@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
 
     $('a[name="clear"]').confirm({
         title: 'Are you sure?',
-        content: 'Clear a log file can not be undone!',
+        content: 'Clearing a log file can not be undone!',
         confirmButton: 'Clear',
         confirmButtonClass: 'btn-danger',
         cancelButton: 'Cancel',
