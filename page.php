@@ -153,7 +153,10 @@ if( $filesystem->has( $errorlog ) ) {
 
 						<hr />
 
-						<a name="clear" class="btn btn-danger clear-log">Clear Log File</a>
+						<a name="reload" class="btn btn-success pull-left">Reload</a>
+						<a name="clear" class="btn btn-danger pull-right">Clear</a>
+
+						<div class="clearfix"></div>
 					</form>
 				</div>
 			</div>

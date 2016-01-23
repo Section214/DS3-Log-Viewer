@@ -35,4 +35,12 @@ jQuery(document).ready(function ($) {
             window.location.replace(url);
         }
     });
+
+    $('a[name="reload"]').click(function () {
+        var url = $.queryString.update(window.location.href, {
+            action: null
+        });
+
+        window.location.replace(url);
+    });
 });
