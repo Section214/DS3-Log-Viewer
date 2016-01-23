@@ -131,19 +131,19 @@ if( $buffer ) {
 				<form>
 					<strong>Select Log File</strong>
 					<div class="radio">
-						<label><input type="radio" name="log" value="apache-access" <?php echo ( $_GET['log'] == 'apache-access' || ! isset( $_GET['log'] ) ? 'checked' : '' ); ?>>Apache Access Log</label>
+						<label><input type="radio" name="log" value="apache-access" <?php echo ( $log == 'apache-access' ? 'checked' : '' ); ?>>Apache Access Log</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="log" value="apache-error" <?php echo ( $_GET['log'] == 'apache-error' ? 'checked' : '' ); ?>>Apache Error Log</label>
+						<label><input type="radio" name="log" value="apache-error" <?php echo ( $log == 'apache-error' ? 'checked' : '' ); ?>>Apache Error Log</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="log" value="php-error" <?php echo ( $_GET['log'] == 'php-error' ? 'checked' : '' ); ?>>PHP Error Log</label>
+						<label><input type="radio" name="log" value="php-error" <?php echo ( $log == 'php-error' ? 'checked' : '' ); ?>>PHP Error Log</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="log" value="mysql-error" <?php echo ( $_GET['log'] == 'mysql-error' ? 'checked' : '' ); ?>>MySQL Error Log</label>
+						<label><input type="radio" name="log" value="mysql-error" <?php echo ( $log == 'mysql-error' ? 'checked' : '' ); ?>>MySQL Error Log</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="log" value="ssl-request" <?php echo ( $_GET['log'] == 'ssl-request' ? 'checked' : '' ); ?>>SSL Request Log</label>
+						<label><input type="radio" name="log" value="ssl-request" <?php echo ( $log == 'ssl-request' ? 'checked' : '' ); ?>>SSL Request Log</label>
 					</div>
 
 					<hr />
