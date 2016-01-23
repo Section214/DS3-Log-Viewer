@@ -69,7 +69,7 @@ switch( $log ) {
 			$files = array();
 
 			foreach( $dir_contents as $fileinfo ) {
-				if( $fileinfo['extension'] == 'err' ) {
+				if( isset( $fileinfo['extension'] ) &&  $fileinfo['extension'] == 'err' ) {
 					$files[$fileinfo['timestamp']][] = $fileinfo['basename'];
 				}
 			}
