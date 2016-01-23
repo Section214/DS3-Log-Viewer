@@ -15,6 +15,7 @@ if( ! $ds_runtime->is_localhost ) {
 	return;
 }
 
+define( 'DS3_LOG_VIEWER_VER', '1.1.0' );
 
 // Require all the things
 require_once( 'header.php' );
@@ -99,10 +100,30 @@ if( $filesystem->has( $errorlog ) ) {
 } else {
 	$data = '';
 }
+
+$ch = curl_init();
+curl_setopt( $ch, CURLOPT_URL, 'https://raw.githubusercontent.com/Section214/DS3-Log-Viewer/master/log-viewer.php' );
+curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 2 );
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+$buffer = curl_exec( $ch );
+curl_close( $ch );
+
+$buffer = explode( "\n", $buffer );
+$latest = str_replace( ' * Version: ', '', $buffer[5] );
+$current = DS3_LOG_VIEWER_VER;
 ?>
 	<div class="container">
 		<div class="row">
 			<h1>Server Logs</h1>
+
+			<?php if( version_compare( $current, $latest, '<' ) ) { ?>
+				<div class="outdated">
+					<h4>Notice!</h4>
+					<p>An update is available for DS3 Log Viewer!&nbsp;&nbsp;&nbsp;<strong>Your Version:</strong> <code><?php echo $current; ?></code>&nbsp;&nbsp;&nbsp;<strong>Latest:</strong> <code><?php echo $latest; ?></code></p>
+					<a href="https://github.com/Section214/DS3-Log-Viewer/archive/<?php echo $latest; ?>.zip">Download the latest version</a>
+				</div>
+			<?php } ?>
 
 			<div class="col-md-3 log-controls">
 				<form>
@@ -159,7 +180,7 @@ if( $filesystem->has( $errorlog ) ) {
 				</form>
 			</div>
 
-			<div class="col-md-9">
+			<div class="col-md-9" style="padding-right: 0">
 				<textarea id="log-viewer" readonly="readonly"><?php echo $data; ?></textarea>
 			</div>
 		</div>

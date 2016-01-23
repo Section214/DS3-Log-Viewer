@@ -10,3 +10,17 @@
 	border: 1px solid #e1e1e8;
 	border-radius: 4px;
 }
+
+.outdated {
+	padding: 20px;
+	margin: 20px 0;
+	border: 1px solid #eee;
+	border-left: 5px solid #ce4844;
+	border-radius: 3px;
+}
+
+.outdated h4 {
+	color: #ce4844;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
