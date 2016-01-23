@@ -18,57 +18,62 @@ if( ! $ds_runtime->is_localhost ) {
 
 // Require all the things
 require_once( 'header.php' );
+require_once( 'vendor/autoload.php' );
+
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local;
 
 $log  = ( ! isset( $_GET['log'] ) ? 'apache-access' : $_GET['log'] );
 
+$root_dir = dirname( __FILE__ );
+
+// Remove the plugin directory.
+$root_dir = explode( '/', $root_dir );
+array_pop( $root_dir );
+array_pop( $root_dir );
+$root_dir = implode( '/', $root_dir );
+
+$adapter = new Local( $root_dir, LOCK_EX, Local::SKIP_LINKS );
+$filesystem = new Filesystem( $adapter );
+
 // Windows is silly...
 if( PHP_OS !== 'Darwin' ) {
-	$file = '../../apache/logs/';
+	$logdir = '/apache/logs/';
+	$sqldir = '/mysql/data/';
 } else {
-	$file = '../../logs/';
+	$logdir = '/logs/';
+	$sqldir = '/xamppfiles/var/mysql/';
 }
 
 switch( $log ) {
 	case 'apache-access' :
-		$file .= 'access_log';
+		$errorlog = $logdir . 'access_log';
 		break;
 	case 'apache-error' :
-		$file .= 'error_log';
+		$errorlog = $logdir . 'error_log';
 		break;
 	case 'php-error' :
-		$file .= 'php_error_log';
+		$errorlog = $logdir . 'php_error_log';
 		break;
 	case 'ssl-request' :
-		$file .= 'ssl_request_log';
+		$errorlog = $logdir . 'ssl_request_log';
 		break;
 	case 'mysql-error' :
 		if( PHP_OS !== 'Darwin' ) {
-			$file = '../../mysql/data/mysql_error.log';
+			$errorlog = $sqldir . 'mysql_error.log';
 		} else {
-			// Get current directory
-			$dir = dirname( __FILE__ );
-
-			// Remove the plugin directory.
-			$dir = explode( '/', $dir );
-			array_pop( $dir );
-			array_pop( $dir );
-
-			// Build the MySQL path
-			$dir = implode( '/', $dir ) . '/xamppfiles/var/mysql/';
+			$dir_contents = $filesystem->listContents( $sqldir );
 			$files = array();
 
-			$iterator = new DirectoryIterator( $dir );
-
-			foreach( $iterator as $fileinfo ) {
-				if( $fileinfo->getExtension() == 'err' ) {
-					$files[$fileinfo->getMTime()][] = $fileinfo->getFilename();
+			foreach( $dir_contents as $fileinfo ) {
+				if( $fileinfo['extension'] == 'err' ) {
+					$files[$fileinfo['timestamp']][] = $fileinfo['basename'];
 				}
 			}
 
-			ksort( $files );
+			krsort( $files );
 
-			$file = array_shift( $files );
-			$file = $dir . $file[0];
+			$errorlog = $sqldir . array_shift( $files )[0];
 		}
 		break;
 	default :
@@ -78,10 +83,14 @@ switch( $log ) {
 
 // Windows is silly...
 if( PHP_OS !== 'Darwin' ) {
-	$file = str_replace( '_log', '.log', $file );
+	$errorlog = str_replace( '_log', '.log', $file );
 }
 
-$data = file_get_contents( $file );
+if( $filesystem->has( $errorlog ) ) {
+	$data = $filesystem->read( $errorlog );
+} else {
+	$data = '';
+}
 ?>
 	<div class="container">
 		<div class="row">
