@@ -109,15 +109,17 @@ curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 $buffer = curl_exec( $ch );
 curl_close( $ch );
 
-$buffer = explode( "\n", $buffer );
-$latest = str_replace( ' * Version: ', '', $buffer[5] );
-$current = DS3_LOG_VIEWER_VER;
+if( $buffer ) {
+	$buffer = explode( "\n", $buffer );
+	$latest = str_replace( ' * Version: ', '', $buffer[5] );
+	$current = DS3_LOG_VIEWER_VER;
+}
 ?>
 	<div class="container">
 		<div class="row">
 			<h1>Server Logs</h1>
 
-			<?php if( version_compare( $current, $latest, '<' ) ) { ?>
+			<?php if( $buffer && version_compare( $current, $latest, '<' ) ) { ?>
 				<div class="outdated">
 					<h4>Notice!</h4>
 					<p>An update is available for DS3 Log Viewer!&nbsp;&nbsp;&nbsp;<strong>Your Version:</strong> <code><?php echo $current; ?></code>&nbsp;&nbsp;&nbsp;<strong>Latest:</strong> <code><?php echo $latest; ?></code></p>
