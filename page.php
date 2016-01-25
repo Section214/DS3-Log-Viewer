@@ -15,7 +15,7 @@ if( ! $ds_runtime->is_localhost ) {
 	return;
 }
 
-define( 'DS3_LOG_VIEWER_VER', '1.1.1' );
+define( 'DS3_LOG_VIEWER_VER', '1.1.2' );
 
 // Require all the things
 require_once( 'header.php' );
