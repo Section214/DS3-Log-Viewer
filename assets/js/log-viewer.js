@@ -10,6 +10,8 @@ jQuery(document).ready(function ($) {
         autofocus: true
     });
 
+    $('.sk-fading-circle').remove();
+
     $('input[name="log"]').change(function () {
         var logFile = $(this).val();
         var url = $.queryString.update(window.location.href, {
