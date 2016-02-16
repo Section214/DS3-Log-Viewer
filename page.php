@@ -15,10 +15,10 @@ if( ! $ds_runtime->is_localhost ) {
 	return;
 }
 
-define( 'DS3_LOG_VIEWER_VER', '1.1.2' );
+define( 'DS3_LOG_VIEWER_VER', '1.1.3' );
 
 // Require all the things
-require_once( 'header.php' );
+require_once( $ds_runtime->htdocs_dir . '/header.php' );
 require_once( 'vendor/autoload.php' );
 
 use League\Flysystem\Filesystem;
